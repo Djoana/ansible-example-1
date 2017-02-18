@@ -1,0 +1,2 @@
+#Common properties
+tomcat_server_home: '{{middleware_base}}/tomcat_server'

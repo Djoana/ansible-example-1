@@ -1,0 +1,9 @@
+# tomcat os user and group
+tomcat_user: 'tomcat'
+tomcat_group: 'tomcat'
+# Software and configuration main directory
+middleware_base: '/home/ec2-user/apache-tomcat'
+
+# JDK installer and target folder
+jdk_installation_archive: 'jdk-8u66-linux-x64.tar.gz'
+jdk_folder: '{{ tomcat_base }}/jdk1.8.0_66'

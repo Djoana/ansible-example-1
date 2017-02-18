@@ -1,0 +1,4 @@
+package_list:
+ - 'wget'
+ - 'curl'
+ - 'git'

@@ -1,0 +1,21 @@
+# linux-tomcat role to configure RHEL system with requirement for tomcat server
+
+# Configure linux
+
+- name: Install required libraries
+  yum: name={{ item }} state=present
+  with_items: package_list
+
+
+# Create users amd groups
+- name: Create Groups
+  group: name={{ tomcat_group }} state=present
+- name: Create users
+  user: name={{ tomcat_user }} groups={{ tomcat_group }} password={{ tomcat_password }}
+
+
+# Create base directories
+- name: Create middleware base path
+  file: state=directory path= {{ middleware_base }} owner={{ tomcat_user }} group={{ tomcat_group }}
+- name: Create tomcat home
+  file: state=directory path= {{ tomcat_server_home }} owner={{ tomcat_user }} group={{ tomcat_group }}

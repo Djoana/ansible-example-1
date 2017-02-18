@@ -1,0 +1,13 @@
+---
+- name: Configure RHEL Linux 7.1 with tomcat domain
+  hosts: tomcat
+  sudo: True
+  vars_files:
+  # User defined variables for infrastructure
+  - infra-vars.yml
+  # infrastructure Passwords
+  - secerts.yml
+  # Common properties. You may not delete this.
+  - tomcat-properties.yml
+  roles:
+  - role: linux-tomcat
