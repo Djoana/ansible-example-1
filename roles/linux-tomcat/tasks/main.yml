@@ -4,7 +4,7 @@
 
 - name: Install required libraries
   yum: name={{ item }} state=present
-  with_items: package_list
+  with_items: "{{ packages_list }}"
 
 
 # Create users amd groups
@@ -15,7 +15,12 @@
 
 
 # Create base directories
+- name: get the username running the deploy
+  local_action: command whoami
+  register: username_on_the_host
+- name: Print Variable Value
+  debug: msg="Middleware Base {{ middleware_base }} and user executing {{ username_on_the_host }}"
 - name: Create middleware base path
-  file: state=directory path= {{ middleware_base }} owner={{ tomcat_user }} group={{ tomcat_group }}
+  file: state=directory path={{ middleware_base }} owner={{ tomcat_user }} group={{ tomcat_group }}
 - name: Create tomcat home
-  file: state=directory path= {{ tomcat_server_home }} owner={{ tomcat_user }} group={{ tomcat_group }}
+  file: state=directory path={{ tomcat_server_home }} owner={{ tomcat_user }} group={{ tomcat_group }}
